@@ -1,0 +1,14 @@
+# Environment variables
+.env
+!.env.example
+
+# Docker volumes
+docker/data/
+
+# Logs
+logs/
+*.log
+
+# Modules
+dist/
+node_modules/
