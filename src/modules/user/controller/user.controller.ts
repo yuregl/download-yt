@@ -1,14 +1,19 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import { UserService } from "../service/user.service";
 import { CreateUserDto } from "../dto/create-user.dto";
 import { UpdateUserDto, UpdateVipDto } from "../dto/update-user.dto";
-21;
+
 import { handleError } from "../../../commons/utils/type-error.utils";
+import { CustomerError } from "../../../commons/Error/customer.error";
+import { IUser } from "../interface/users.interface";
 
 export class UserController {
     constructor(private readonly userService: UserService) {}
 
-    async create(req: Request, res: Response, next: NextFunction) {
+    async create(
+        req: Request,
+        res: Response,
+    ): Promise<Response<CreateUserDto> | Response<CustomerError | Error>> {
         if (req.erro) {
             return res
                 .status(req.erro.status)
@@ -19,13 +24,16 @@ export class UserController {
 
         try {
             const createdUser = await this.userService.create(userData);
-            res.status(201).json(createdUser);
+            return res.status(201).json(createdUser);
         } catch (error) {
-            handleError(error as Error, res);
+            return handleError(error as Error, res);
         }
     }
 
-    async findById(req: Request, res: Response, next: NextFunction) {
+    async findById(
+        req: Request,
+        res: Response,
+    ): Promise<Response<Partial<IUser>> | Response<CustomerError | Error>> {
         if (req.erro) {
             return res.status(req.erro.status).json({
                 message:
@@ -38,13 +46,16 @@ export class UserController {
         const userId = req.headers.userId as string;
         try {
             const user = await this.userService.findById(userId);
-            res.status(200).json(user);
+            return res.status(200).json(user);
         } catch (error) {
-            handleError(error as Error, res);
+            return handleError(error as Error, res);
         }
     }
 
-    async update(req: Request, res: Response, next: NextFunction) {
+    async update(
+        req: Request,
+        res: Response,
+    ): Promise<Response<IUser> | Response<CustomerError | Error>> {
         if (req.erro) {
             return res
                 .status(req.erro.status)
@@ -56,13 +67,16 @@ export class UserController {
 
         try {
             const updatedUser = await this.userService.update(userId, userData);
-            res.status(200).json(updatedUser);
+            return res.status(200).json(updatedUser);
         } catch (error) {
-            handleError(error as Error, res);
+            return handleError(error as Error, res);
         }
     }
 
-    async updateVip(req: Request, res: Response, next: NextFunction) {
+    async updateVip(
+        req: Request,
+        res: Response,
+    ): Promise<Response<IUser> | Response<CustomerError | Error>> {
         if (req.erro) {
             return res
                 .status(req.erro.status)
@@ -77,9 +91,9 @@ export class UserController {
                 userId,
                 body.status,
             );
-            res.status(200).json(updatedUser);
+            return res.status(200).json(updatedUser);
         } catch (error) {
-            handleError(error as Error, res);
+            return handleError(error as Error, res);
         }
     }
 }

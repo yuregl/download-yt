@@ -1,0 +1,9 @@
+echo "Check for linting errors"
+
+npm run check:fix ||
+(echo "Fixing linting errors" && exit 1)
+
+npm run check ||
+(echo "Linting errors found" && exit 1)
+
+echo "Done"

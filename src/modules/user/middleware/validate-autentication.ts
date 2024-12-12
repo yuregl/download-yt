@@ -2,7 +2,11 @@ import { NextFunction, Request, Response } from "express";
 import { TokenService } from "../../auth/service/token.service";
 
 export function validateAutentication() {
-    return async (req: Request, res: Response, next: NextFunction) => {
+    return async (
+        req: Request,
+        res: Response,
+        next: NextFunction,
+    ): Promise<void> => {
         const tokenService = new TokenService();
 
         const token = req.headers["authorization"];

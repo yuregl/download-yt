@@ -1,13 +1,18 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import { DownloadService } from "../service/download.service";
 import { CreateDownloadDto } from "../dto/download.dto";
 import { handleError } from "../../../commons/utils/type-error.utils";
 import { GetFormatsDto } from "../dto/get-formats.dto";
+import { SendDownloadDto } from "../dto/send-download.dto";
+import { CustomerError } from "../../../commons/Error/customer.error";
 
 export class DownloadController {
     constructor(private readonly downloadService: DownloadService) {}
 
-    async createDownload(req: Request, res: Response, next: NextFunction) {
+    async createDownload(
+        req: Request,
+        res: Response,
+    ): Promise<Response<SendDownloadDto> | Response<CustomerError | Error>> {
         if (req.erro) {
             return res.status(req.erro.status).json({
                 message:
@@ -27,11 +32,14 @@ export class DownloadController {
             );
             return res.status(200).json(download);
         } catch (error) {
-            handleError(error as Error, res);
+            return handleError(error as Error, res);
         }
     }
 
-    async getValidFormats(req: Request, res: Response, next: NextFunction) {
+    async getValidFormats(
+        req: Request,
+        res: Response,
+    ): Promise<Response<string> | Response<CustomerError | Error>> {
         if (req.erro) {
             return res.status(req.erro.status).json({
                 message:
@@ -45,7 +53,7 @@ export class DownloadController {
             const formats = await this.downloadService.getValidFormats(url);
             return res.status(200).json(formats);
         } catch (error) {
-            handleError(error as Error, res);
+            return handleError(error as Error, res);
         }
     }
 }

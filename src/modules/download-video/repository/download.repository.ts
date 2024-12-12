@@ -2,7 +2,9 @@ import { RepositoryBase } from "../../../commons/repository-base";
 import { IDownloadVideo } from "../interface/donwload.interface";
 
 export class DownloadRepository extends RepositoryBase<IDownloadVideo> {
-    async getAlldownloadsByUserIdByDay(userId: string) {
+    async getAlldownloadsByUserIdByDay(
+        userId: string,
+    ): Promise<IDownloadVideo[]> {
         const downloads = await this.model.find({
             userId,
             createdAt: {

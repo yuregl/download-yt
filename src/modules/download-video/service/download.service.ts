@@ -17,6 +17,7 @@ import {
     InfoFormatDto,
     SendInfoFormatsDto,
 } from "../dto/send-info-formats.dto";
+import { IDownloadVideo } from "../interface/donwload.interface";
 
 export class DownloadService {
     private readonly validFormats = ["18", "22", "37", "44", "140"];
@@ -43,11 +44,6 @@ export class DownloadService {
         const quantityDownloadsByDay =
             await this.getAlldownloadsByUserIdByDay(userId);
 
-        console.log(
-            quantityDownloadsByDay.length,
-            "============================",
-        );
-
         if (!userExists.vip && quantityDownloadsByDay.length >= 10) {
             throw new CustomerError(
                 "Limite de downloads diários atingido",
@@ -68,7 +64,9 @@ export class DownloadService {
         };
     }
 
-    async getAlldownloadsByUserIdByDay(userId: string) {
+    async getAlldownloadsByUserIdByDay(
+        userId: string,
+    ): Promise<IDownloadVideo[]> {
         const downloads =
             await this.downloadRepository.getAlldownloadsByUserIdByDay(userId);
         return downloads;
@@ -102,7 +100,7 @@ export class DownloadService {
             formats,
         };
     }
-    private selectTag(formatType: string) {
+    private selectTag(formatType: string): string {
         return selectTagByResolution(formatType as resolutionTag);
     }
 

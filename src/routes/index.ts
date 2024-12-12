@@ -6,7 +6,7 @@ import { userRoutes } from "./user.route";
 import { authRoutes } from "./auth.route";
 import { downloadRoutes } from "./download.route";
 
-async function expressApp() {
+async function expressApp(): Promise<express.Application> {
     await connectToDatabase();
     const app = express();
 

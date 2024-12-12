@@ -18,6 +18,7 @@ export class TokenService {
             ) as TokenPayload;
             return decoded.userId;
         } catch (error) {
+            console.info(error);
             return null;
         }
     }
