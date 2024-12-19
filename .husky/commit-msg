@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "Commit "
+npx --no-install commitlint --edit $1

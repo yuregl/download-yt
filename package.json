@@ -21,7 +21,7 @@
     "license": "ISC",
     "description": "",
     "devDependencies": {
-        "@commitlint/cli": "^19.6.0",
+        "@commitlint/cli": "^19.6.1",
         "@commitlint/config-conventional": "^19.6.0",
         "@eslint/js": "^9.16.0",
         "@types/cors": "^2.8.17",
@@ -29,6 +29,7 @@
         "@types/node": "^22.10.1",
         "@typescript-eslint/eslint-plugin": "^8.18.0",
         "@typescript-eslint/parser": "^8.18.0",
+        "cosmiconfig-typescript-loader": "^6.1.0",
         "eslint": "^9.16.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-prettier": "^5.2.1",
@@ -36,7 +37,7 @@
         "husky": "^9.1.7",
         "lint-staged": "^15.2.11",
         "nodemon": "^3.1.7",
-        "prettier": "^3.4.1",
+        "prettier": "^3.4.2",
         "tsx": "^4.19.2",
         "typescript": "^5.7.2",
         "typescript-eslint": "^8.18.0"
