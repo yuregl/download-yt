@@ -6,6 +6,7 @@ const Configuration = {
             "always",
             ["feat", "fix", "docs", "style", "refactor", "test", "chore"],
         ],
+        "header-max-length": [2, "always", 50],
     },
 };
 
