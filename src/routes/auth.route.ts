@@ -16,9 +16,9 @@ function authRoutes(): Router {
     const loginService = new LoginService(userService, tokenService);
     const loginController = new LoginController(loginService);
 
-    router.post("/auth/login", (req: Request, res: Response) =>
-        loginController.login(req, res),
-    );
+    router.post("/auth/login", (req: Request, res: Response) => {
+        loginController.login(req, res);
+    });
 
     return router;
 }

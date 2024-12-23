@@ -1,4 +1,4 @@
-import { Router, Request, Response, NextFunction } from "express";
+import { Router, Request, Response } from "express";
 import { DownloadController } from "../modules/download-video/controller/download.controller";
 import { DownloadService } from "../modules/download-video/service/download.service";
 import { DownloadRepository } from "../modules/download-video/repository/download.repository";
@@ -29,8 +29,8 @@ function downloadRoutes(): Router {
         "/download/create",
         validateAutentication(),
         validationInputMiddleware(CreateDownloadDto),
-        (req: Request, res: Response, next: NextFunction) => {
-            downloadController.createDownload(req, res, next);
+        (req: Request, res: Response) => {
+            downloadController.createDownload(req, res);
         },
     );
 
@@ -38,8 +38,8 @@ function downloadRoutes(): Router {
         "/download/get-formats",
         validateAutentication(),
         validationInputMiddleware(GetFormatsDto),
-        (req: Request, res: Response, next: NextFunction) => {
-            downloadController.getValidFormats(req, res, next);
+        (req: Request, res: Response) => {
+            downloadController.getValidFormats(req, res);
         },
     );
 
