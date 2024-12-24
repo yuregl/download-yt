@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "sourceMap": true,
         "target": "es2022",
         "module": "commonjs",
         "rootDir": "./src",
@@ -10,7 +11,11 @@
         "skipLibCheck": true,
         "resolveJsonModule": true,
         "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
+        "emitDecoratorMetadata": true,
+        "baseUrl": "./",
+        "paths": {
+            "@/*": ["src/*"]
+        }
     },
     "include": ["src/**/*"],
     "exclude": ["node_modules"]
