@@ -15,7 +15,7 @@
         "prepare": "husky",
         "check": "eslint src/**/*.ts",
         "check:fix": "eslint src/**/*.ts --fix",
-        "test": "jest --passWithNoTests -- --coverage"
+        "test": "jest --silent"
     },
     "keywords": [],
     "author": "",

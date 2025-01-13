@@ -12,7 +12,7 @@ export class LoginController {
             const token = await this.loginService.login(email, password);
             return res.status(200).json(token);
         } catch (error) {
-            return res.status(400).json({ message: (error as Error).message });
+            return res.status(401).json({ message: (error as Error).message });
         }
     }
 }

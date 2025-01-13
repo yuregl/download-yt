@@ -1,9 +1,9 @@
-import { LoginService } from "../../../src/modules/auth/service/login.service";
-import { UserService } from "../../../src/modules/user/service/user.service";
-import { TokenService } from "../../../src/modules/auth/service/token.service";
-import { comparePassword } from "../../../src/commons/utils/hashPassword";
+import { LoginService } from "../../../../src/modules/auth/service/login.service";
+import { UserService } from "../../../../src/modules/user/service/user.service";
+import { TokenService } from "../../../../src/modules/auth/service/token.service";
+import { comparePassword } from "../../../../src/commons/utils/hashPassword";
 
-jest.mock("../../../src/commons/utils/hashPassword");
+jest.mock("../../../../src/commons/utils/hashPassword");
 
 describe("LoginService", () => {
     let loginService: LoginService;
@@ -32,8 +32,6 @@ describe("LoginService", () => {
         tokenService.generateToken = jest.fn().mockResolvedValue("token");
 
         const result = await loginService.login(email, password);
-
-        console.log({ result });
 
         expect(result).toEqual({ token: "token" });
         expect(userService.findByEmail).toHaveBeenCalledWith(email);
