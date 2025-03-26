@@ -14,6 +14,7 @@ export default {
         "!src/config/**",
         "!**/*interface*",
         "!**/*dto*",
+        "!**/routes/**",
     ],
     coverageProvider: "v8",
     testMatch: ["**/?(*.)+(spec|test).[tj]s?(x)"],
