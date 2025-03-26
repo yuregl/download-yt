@@ -12,4 +12,7 @@ logs/
 # Modules
 dist/
 node_modules/
+
+# Testing
 coverage/
+.nyc_output/
