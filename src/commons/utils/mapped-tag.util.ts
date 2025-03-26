@@ -9,7 +9,7 @@ export function selectTagByResolution(resolution: resolutionTag): string {
         "720": "22",
         "1080": "37",
     };
-    return tag[resolution] ?? "18";
+    return tag[resolution];
 }
 
 export function selectResolutionByTag(tag: tag): string {
@@ -20,5 +20,5 @@ export function selectResolutionByTag(tag: tag): string {
         "37": "1080",
         "140": "only audio",
     };
-    return resolution[tag] ?? "360";
+    return resolution[tag];
 }

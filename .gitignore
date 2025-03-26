@@ -12,3 +12,4 @@ logs/
 # Modules
 dist/
 node_modules/
+coverage/

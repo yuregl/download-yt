@@ -33,7 +33,7 @@ export class DownloadService {
     ): Promise<SendDownloadDto> {
         const userExists = await this.userService.findById(userId);
 
-        const metadataVideo = ytdl(body.url, {
+        const metadataVideo = await ytdl(body.url, {
             dumpSingleJson: true,
         });
 

@@ -1,4 +1,4 @@
-import { Router, Request, Response, NextFunction } from "express";
+import { Router, Request, Response } from "express";
 import { UserController } from "../modules/user/controller/user.controller";
 import { UserService } from "../modules/user/service/user.service";
 import { UserRepository } from "../modules/user/repository/user.repository";
@@ -20,16 +20,16 @@ function userRoutes(): Router {
     router.post(
         "/user/create",
         validationInputMiddleware(CreateUserDto),
-        (req: Request, res: Response, next: NextFunction) => {
-            userController.create(req, res, next);
+        (req: Request, res: Response) => {
+            userController.create(req, res);
         },
     );
 
     router.get(
         "/user",
         validateAutentication(),
-        (req: Request, res: Response, next: NextFunction) => {
-            userController.findById(req, res, next);
+        (req: Request, res: Response) => {
+            userController.findById(req, res);
         },
     );
 
@@ -37,8 +37,8 @@ function userRoutes(): Router {
         "/user/update",
         validateAutentication(),
         validationInputMiddleware(UpdateUserDto),
-        (req: Request, res: Response, next: NextFunction) => {
-            userController.update(req, res, next);
+        (req: Request, res: Response) => {
+            userController.update(req, res);
         },
     );
 
@@ -46,8 +46,8 @@ function userRoutes(): Router {
         "/user/update-vip",
         validateAutentication(),
         validationInputMiddleware(UpdateVipDto),
-        (req: Request, res: Response, next: NextFunction) => {
-            userController.updateVip(req, res, next);
+        (req: Request, res: Response) => {
+            userController.updateVip(req, res);
         },
     );
 
