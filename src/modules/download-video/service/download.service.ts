@@ -5,11 +5,8 @@ import { UserService } from "../../user/service/user.service";
 import { DownloadRepository } from "../repository/download.repository";
 import { CreateDownloadDto } from "../dto/download.dto";
 import {
-    resolutionTag,
     selectResolutionByTag,
-    selectTagByResolution,
     tag,
-    unitFormatType,
 } from "../../../commons/utils/mapped-tag.util";
 
 import { SendDownloadDto } from "../dto/send-download.dto";
@@ -99,17 +96,5 @@ export class DownloadService {
             thumbnail: metadataVideo.thumbnail,
             formats,
         };
-    }
-    private selectTag(formatType: string): string {
-        return selectTagByResolution(formatType as resolutionTag);
-    }
-
-    private audioOrVideo(resolution: string, formatType: string): string {
-        const tag = this.selectTag(resolution);
-        const selectType = {
-            "1": tag,
-            "2": "140",
-        };
-        return selectType[formatType as unitFormatType];
     }
 }
